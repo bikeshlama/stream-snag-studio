@@ -28,12 +28,16 @@ export const getVideoInfo = async (url: string): Promise<VideoInfo> => {
       throw new Error("Invalid video URL. Please enter a valid YouTube, TikTok, or other supported platform URL.");
     }
     
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    // Generate a mock video ID from the URL
+    const videoId = url.split("/").pop() || Math.random().toString(36).substring(2, 8);
     
     // Mock data
     const mockVideoInfo: VideoInfo = {
-      id: "video123",
-      title: "Sample Video - " + url.split("/").pop(),
+      id: videoId,
+      title: `Sample Video - ${videoId}`,
       thumbnail: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
       duration: "3:45",
       author: "Sample Author",
@@ -77,6 +81,8 @@ export const downloadVideo = async (format: VideoFormat) => {
 
 // Validate if the URL is from a supported video platform
 export const isValidVideoUrl = (url: string): boolean => {
+  if (!url) return false;
+  
   // Basic regex pattern for YouTube, TikTok, and some other common video platforms
   const patterns = [
     /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/i,

@@ -22,13 +22,19 @@ const VideoForm = ({ onVideoInfoReceived }: VideoFormProps) => {
       return;
     }
 
+    if (!isValidVideoUrl(url)) {
+      toast.error("Invalid video URL. Please enter a valid YouTube, TikTok, or other supported platform URL.");
+      return;
+    }
+
     try {
       setIsLoading(true);
       const videoInfo = await getVideoInfo(url);
       onVideoInfoReceived(videoInfo);
       toast.success("Video found! Select your preferred format below.");
     } catch (error) {
-      // Error is already handled in getVideoInfo
+      console.error("Error fetching video:", error);
+      toast.error(error instanceof Error ? error.message : "Failed to get video information");
       onVideoInfoReceived(null);
     } finally {
       setIsLoading(false);

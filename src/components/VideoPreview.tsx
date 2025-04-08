@@ -23,10 +23,14 @@ const VideoPreview = ({ videoInfo }: VideoPreviewProps) => {
     setIsDownloading(format.quality);
     try {
       await downloadVideo(format);
+    } catch (error) {
+      console.error("Download error:", error);
     } finally {
       setIsDownloading(null);
     }
   };
+
+  if (!videoInfo) return null;
 
   return (
     <div className="w-full max-w-3xl mx-auto mt-8 rounded-lg overflow-hidden shadow-lg bg-white dark:bg-gray-900 transition-all duration-300">
