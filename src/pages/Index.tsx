@@ -4,7 +4,7 @@ import VideoForm from "@/components/VideoForm";
 import VideoPreview from "@/components/VideoPreview";
 import FeatureList from "@/components/FeatureList";
 import Footer from "@/components/Footer";
-import { Download } from "lucide-react";
+import Header from "@/components/Header";
 import { VideoInfo } from "@/utils/videoUtils";
 
 const Index = () => {
@@ -16,14 +16,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      {/* Header */}
+      <Header />
+      
       {/* Hero Section */}
       <div className="py-16 px-4">
         <div className="text-center max-w-3xl mx-auto">
-          <div className="mb-6 w-24 h-24 bg-white dark:bg-gray-900 rounded-full mx-auto flex items-center justify-center shadow-lg animate-float">
-            <Download className="w-12 h-12 text-primary" />
-          </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-gradient">
-            VideoSnag
+            Download Videos Fast
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-xl mx-auto">
             Download videos from YouTube, TikTok, and more with just a few clicks
